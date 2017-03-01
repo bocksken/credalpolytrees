@@ -24,11 +24,6 @@
 \usepackage{todonotes}
 \presetkeys{todonotes}{fancyline, color=blue!30}{}
 %\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
-%\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
-%\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
-%\newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
-%\newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
-%\newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
 \begin{document}
 % Title and authors
 \title{Online Variable Elimination for Credal Polytrees}
@@ -39,7 +34,7 @@ Belgium\\
 \name David Huber \email david@idsia.ch\\
 \name Alessandro Antonucci \email alessandro@idsia.ch\\
 \addr Istituto Dalle Molle di Studi Sull'Intelligenza Artificiale (IDSIA)\\
-Lugano (Switzerland)}
+Switzerland}
 \maketitle
 \begin{abstract}%   <- trailing '%' for backward compatibility of .sty file
 We propose a variable-elimination algorithm for exact inference in singly connected credal networks with strong independence. Compared to earlier works in this direction, the necessary extensive specification of the local models and the convexification are performed in an online way. This might produce considerable savings in memory and, for convexification only, time. Moreover, we show that with singly connected networks the convexification of the intermediate results of the inference can be achieved before the elimination step in a space with the same dimensionality of the variable to eliminate. This prevents issues related to convex hulls in high dimensions. Despite the NP-hardness of the inference even in the case of singly connected topologies, the experiments on a benchmark of randomly generated credal polytrees shows that exact inference can be achieved in models up to xxx variables if the number xxx. A further speed-up, at the price of an approximation, is achieved by rounding the values of the extreme points before the convexification, while an extension to general topologies can be achieved by loopset conditioning.
@@ -53,41 +48,27 @@ Credal networks; convex hull; variable elimination; cutset conditioning.
 \input{VEsmart}
 \input{example}
 %\input{experiments}
-\section{Conclusions and Outlooks}
-Let me see. Mention that we might explore other (more complex) inference task such as the computation of the probability of evidence as well as the maximum a posteriori hypothesis task (MAP), which in the credal setting can be formulated in different ways.
-\bibliography{biblio}
-\end{document}
-
-
-
-%When the procedure end the algorithm returns $P(X_0,x_E)$ which can be used to compute $P(X_0|x_E)$ by a simple marginalization. The combination operation simply consists in the product of two CPTs, marginalisation simply coincides with the sum of a variable on the left and focusing with the xxx.
-
-\end{document}
-
 \section{Extending the algorithm}
 \subsection{Rounding the potentials}
 The above considered procedure can be used to credal updating in polytree shaped CNs. Yet the problem, even in the case of marginal computation. Consider for instance the problem used by xxx to prove that marginal inference in ternary polytrees is NP-hard. Following the directions in xxx, we achieve an approximated.
 \subsection{Multiply-connected networks}
 Yet, it is not applicable to multiply connected models and, with even with simple polytrees it might
-
 \section{Experiments}
 In order to demonstrate our algorithm we consider a benchmark of xxx. Note that unlike the experiments of xxx, we consider separately specified credal networks which are extensivised as in xxx when necessary (see line xxx of alg xx).
- 
-
-For sets of conditional mass functions we use the short notation $P(X_I|X_J)=\{ P(X_I|x_J) \}_{x_J}$. Such a collection of mass functions can be clearly regarded as a real-valued functions of either the variables on the left and the right of the conditioning bar. For CSs we analougously use notation $K(X_I|X_J)$ for a collection of credal sets. Yet, in this case the position wrt conditioning bar is not irrelevant. From an algebraic point of view this is a set-valued function of $X_I$ separately for each value of $X_J$. To bypass this issue it is possible to formulate each local specification of conditional . This is for instance the approach xxx. We use notation $K(X_I||X_J)$ to denote an extensive formulation of $K(X_I|X_J)$. Note that if on a side the extensive specification allows for xxx, it might be highly redundant xxx.
-
-Variable elimination is a standard inference strategy for xxx.
-
-Let us first explain how the computation of a marginal (i.e., $X_E = \emptyset$). Without lack of generality let us assume that the queried variable is $X_0$. 
-
-\vskip 2mm
-
-Chain and reversed chain
-
-\begin{myex}
-Let $X$ and $Y$ be two Boolean variables. If $P(X|Y=0)=\mathrm{CH}[]$ and $K(X|Y=1)=$ Then the xxx.
-\end{myex}
-
+\section{Conclusions and Outlooks}
+Let me see. Mention that we might explore other (more complex) inference task such as the computation of the probability of evidence as well as the maximum a posteriori hypothesis task (MAP), which in the credal setting can be formulated in different ways.
+\bibliography{biblio}
+\end{document}
+%When the procedure end the algorithm returns $P(X_0,x_E)$ which can be used to compute $P(X_0|x_E)$ by a simple marginalization. The combination operation simply consists in the product of two CPTs, marginalisation simply coincides with the sum of a variable on the left and focusing with the xxx.
+%For sets of conditional mass functions we use the short notation $P(X_I|X_J)=\{ P(X_I|x_J) \}_{x_J}$. Such a collection of mass functions can be clearly regarded as a real-valued functions of either the variables on the left and the right of the conditioning bar. For CSs we analougously use notation $K(X_I|X_J)$ for a collection of credal sets. Yet, in this case the position wrt conditioning bar is not irrelevant. From an algebraic point of view this is a set-valued function of $X_I$ separately for each value of $X_J$. To bypass this issue it is possible to formulate each local specification of conditional . This is for instance the approach xxx. We use notation $K(X_I||X_J)$ to denote an extensive formulation of $K(X_I|X_J)$. Note that if on a side the extensive specification allows for xxx, it might be highly redundant xxx.
+%Variable elimination is a standard inference strategy for xxx.
+%Let us first explain how the computation of a marginal (i.e., $X_E = \emptyset$). Without lack of generality let us assume that the queried variable is $X_0$. 
+%Chain and reversed chain
+%\begin{myex}
+%Let $X$ and $Y$ be two Boolean variables. If $P(X|Y=0)=\mathrm{CH}[]$ and $K(X|Y=1)=$ Then the xxx.
+%\end{myex}
+%\section{Cutset conditioning}
+%The VE procedure described in the previous section (whose worst case complexity remains exponentials) can be applied to polytree only. In order to extends these ideas to multiply connected topologies we adopt the same strategy considered for credal networks and based on the notion of cutset. It is a well-known fact that the arcs leaving an observed node in a Bayesian networks can be removed, provided that the local models of its children are replaced to xxx. This results have been shown to be valid for credal networks with strong independence by xxx. The cutset conditioning idea simply consists in detecting a set of nows whose observations. For Bayesian networks this procedure, whose complexity is xxx.
 \begin{figure}
 \centering
 \begin{tikzpicture}[semithick]
@@ -129,198 +110,26 @@ Let $X$ and $Y$ be two Boolean variables. If $P(X|Y=0)=\mathrm{CH}[]$ and $K(X|Y
 \caption{A polytree-shaped credal network}
 \label{fig:polytree}
 \end{figure}
-
-
-
-
-
-
-
-
-
-
-\vskip 2mm
-
-In presence of evidence nothing really changes apart xxx.
-
 Just notice that $P(X_q,x_E)$ shoul be eventually normalised in order to obtain $P(X_q|x_E)$.
-
 From the point of view of variable elimination, there is a crucial differ
-
-The goal of this paper is to 
-
-\section{Variable elimination with credal networks}
-
-
-The combination operator $\otimes$ is achieved by simple elementwise multiplication. As noticed by Koller, this combination does not necessarily produce a set of conditional mass function.
-
-To extend the VE algorithm to the CNs framework we need to extend to the credal sets framework the above considered operations of combination and marginalization. This is done in the following definitions.
-\begin{mydef}
-	Let $K(X_I|X_J)$ and  denote a collection of credal is denotes as $K(X||Y)$. We call this transformation extensivisation.
-\end{mydef}
-
-\begin{mydef}
-Let $K(X|Y)$ denote a collection of credal sets and $K(W|Z)$ a second collection. The combination
-\[ K \otimes K \]
-is denotes as $K(X\vdots Y)$. We call this transformation extensivisation.
-\end{mydef}
-
-\begin{mydef}
-Given a cs $K(X,Y)$, the marginalization is achieved
-\[ K(X,Y)_X := \{ P(X) := \} \] 
-\end{mydef}
-It is a trivial lemma to prova that combination and marginalization cannot add extreme points. 
-
-$K(X_q,x_E)$ shoul be eventually conditioned vertices-wise in order to obtain $K(X_q|x_E)$.
-
-\[ K(X|y) = \]
-
-Overall we have the following algorithm to perform.
-
-Such a simple procedure might already suffer two issues:
-
-\begin{itemize}
-\item An exponential blow up in the number of extreme points due to the extensivisation 
-\item An exponential blow up due to the fact that the convex hull should be performed in a space of high dimensionality.
-\end{itemize}
-
-The standard operations of marginalization and combination should be extended to the case of credal networks.
-
-Given two collection of conditional credal sets $K(X|Y)$ and 
-
-\section{A faster variable elimination for polytree-shaped credal networks}
-
-In the case of polytrees.
-
-Elimination order xxx.
-
-Variable elimination (revised).
-
-
-\begin{algorithm}
-\caption{The A-LP algorithm
-\vskip 0.6mm [Parameters] $s$ (maximum number of no-improve iterations) and $t$ (number of restarts) 
-\vskip 0.6mm [Input] a credal network specification $\{ K(X_i|\pi_i) \}_{i=0,\ldots,n}^{\pi_i\in\Omega_{\Pi_i}}$
-\vskip 0.6mm [Output] $p$ an upper approximation of $\underline{P}(x_0)$\label{algo:glp}}
-\begin{algorithmic}[1]
-\State $pp \gets 1.0$
-\State $b \gets 0$
-\For{$count \gets 1,t$}\Comment{random restarts}
-\State $p \gets 1.0$
-\State $\bm{X}',\bm{X}''\gets \bm{X}$
-\State iterate $\gets$ TRUE
-\State $\tilde{P}(X_i|\pi_i)$ $\gets$ randomly pick from $\mathrm{ext}[K(X_i|\pi_i)]$ $\forall i,\pi_i$ \Comment{initialization}
-\While{iterate}
-\If{$\bm{X}' \neq \emptyset$}
-\State $X_j$ $\gets$ randomly pick from $\bm{X}'$
-\State $\underline{P}'(x_0),P^*(X_j|\pi_j)$ $\gets$ LP with $X_j,\{ P(X_i|\pi_i) \}_{i\neq j}$
-%\Comment{Eqs. \eqref{eq:opt} \eqref{eq:lower}}
-\If{$\underline{P}'(x_0)<p$}
-\State $p \gets \underline{P}'(x_0)$
-\State $\tilde{P}(X_j|\pi_j)\gets P^*(X_j|\pi_j)$ $\forall \pi_j$ 
-\State $\bm{X}' \gets \bm{X} \setminus \{ X_j \}$
-\Else
-\State $\bm{X}' \gets \bm{X}' \setminus \{ X_j \}$
-\EndIf
-\Else
-\State $X_j$ $\gets$ randomly pick from $\bm{X}''$
-\State $\underline{P}'(x_0),P^*(X_j|\pi_j)$ $\gets$ LP with $X_j,\{ P(X_i|\pi_i)\}_{i\neq j}$\Comment{as in line 11}
-\If{$\tilde{P} \neq P^*$}
-\State $\tilde{P}(X_j|\pi_j)\gets P^*(X_j|\pi_j)$ $\forall \pi_j$
-\If{$\underline{P}'(x_0)<p$}
-\State $p \gets \underline{P}'(x_0)$
-\State $\bm{X}' \gets \bm{X} \setminus \{ X_j\}$
-\State $\bm{X}''\gets \bm{X}$ %aggiungere no $X_j$ solo per $\bm{X}'$
-\State $b \gets 0$
-\Else
-\State $b$++
-\State $\bm{X}'' \gets \bm{X} \setminus \{ X_j \}$
-\State{\bf if} $b \equiv s$ {\bf then} iterate $\gets$ FALSE \Comment{too many no-improvements}
-\EndIf
-\Else
-\State $\bm{X}'' \gets \bm{X}'' \setminus \{ X_j \}$
-\State{\bf if} $\bm{X}'' \equiv \emptyset$ {\bf then} iterate $\gets$ FALSE \Comment{no way to continue}
-\EndIf
-\EndIf
-\EndWhile
-\State {\bf if} $p<pp$ {\bf then} $pp \gets p$ \Comment{take the best}
-\EndFor
-\State {\bf return} $pp$ 
-\end{algorithmic}
-\end{algorithm}
-
-
-
-
-
-\section{Cutset conditioning}
-
-The VE procedure described in the previous section (whose worst case complexity remains exponentials) can be applied to polytree only. In order to extends these ideas to multiply connected topologies we adopt the same strategy considered for credal networks and based on the notion of cutset. It is a well-known fact that the arcs leaving an observed node in a Bayesian networks can be removed, provided that the local models of its children are replaced to xxx. This results have been shown to be valid for credal networks with strong independence by xxx. The cutset conditioning idea simply consists in detecting a set of nows whose observations. For Bayesian networks this procedure, whose complexity is xxx.
-
-Consider an updating task $\underline{P}(x_q|x_E)$ in a credal network. If the network is not singly connected we detect a set of cutset conditioning $X_F$. Thus we compute $K(X_q,x_E,x_F)$ and hence $K(X_q,x_E|x_F)$.
-
-\[ \underline{P}(x_q|x_E) \leq \sum_{x_F} \underline{P}(x_q,x_F|x_E) \]
-
-\section{Experiments}
-
-\subsection{Randomly generated credal sets}
-
-\subsection{The benchmark}
-
-\subsection{Results}
-
-
-
-\section{Major Guidelines}
-Your ISIPTA '17 paper should be submitted on the {\href{https://easychair.org/conferences/?conf=isipta17}{\ul{ISIPTA '17 Easychair page}}. Please check the {\href{http://isipta.idsia.ch}{conference website} for the submission deadlines.
-\begin{itemize}
-\item Limit your text, bibliography and appendices included, to 12 pages.
-\end{itemize}
-
-\section{Introduction}
-Exact BNs inference is NP-hard task in general. Network topology is primarly setting this complexity level. In fact polytree shaped BNs can be updated in polynomial time (provided the the indegree is bounded), while general models can be only xx. CNs extend BNs by allowing for set-valued specification of the local models, with single conditional probability mass functions in the conditional probability tables replaced by convex sets of them. Updating in these cases is intended as the computation of the lower and upper bounds of the posterior probability with respect. This is clearly still a hard task extending BNs inference. Exact inference in credal networks is considerably more difficult. A recent paper. A possible rationale about that is the fact also the vertices are involved in that.
+%\section{Variable elimination with credal networks}
+%The combination operator $\otimes$ is achieved by simple elementwise multiplication. As noticed by Koller, this combination does not necessarily produce a set of conditional mass function.
+%To extend the VE algorithm to the CNs framework we need to extend to the credal sets framework the above considered operations of combination and marginalization. This is done in the following definitions.
+%\begin{mydef}
+%	Let $K(X_I|X_J)$ and  denote a collection of credal is denotes as $K(X||Y)$. We call this transformation extensivisation.
+%\end{mydef}
+%Consider an updating task $\underline{P}(x_q|x_E)$ in a credal network. If the network is not singly connected we detect a set of cutset conditioning $X_F$. Thus we compute $K(X_q,x_E,x_F)$ and hence $K(X_q,x_E|x_F)$.
+%\[ \underline{P}(x_q|x_E) \leq \sum_{x_F} \underline{P}(x_q,x_F|x_E) \]
+%\section{Experiments}
+%\subsection{Randomly generated credal sets}
+%\subsection{The benchmark}
+%\subsection{Results}
+%Exact BNs inference is NP-hard task in general. Network topology is primarly setting this complexity level. In fact polytree shaped BNs can be updated in polynomial time (provided the the indegree is bounded), while general models can be only xx. CNs extend BNs by allowing for set-valued specification of the local models, with single conditional probability mass functions in the conditional probability tables replaced by convex sets of them. Updating in these cases is intended as the computation of the lower and upper bounds of the posterior probability with respect. This is clearly still a hard task extending BNs inference. Exact inference in credal networks is considerably more difficult. A recent paper. A possible rationale about that is the fact also the vertices are involved in that.
 %%%%%%%%%%%
-\section{Basics}
-\subsection{Bayesian and credal networks}
-\subsection{Convex hull algorithms}
-\subsection{Variable Elimination}
-%%%%%%%%%%%
-\section{Empirical analysis about updating tree-shaped CNs}
-%%%%%%%%%%%
-\section{Outer approximation of credal set for ternary variables}
-With bounder number of variables
-%%%%%%%%%%%
-\section{3U: an algorithm for ternary credal polytrees updating}
-Just variable elimination +
-
-\section{Cutset Conditioning with Credal Networks}%3U: an algorithm for ternary credal polytrees updating}
-Just variable elimination +
-Identify a cutset. Take all the instantiations of the cust and compute the posterior credal sets.
-Optimize the sum over the custer variables given the constraints, equivalent.
-Iterate over the available cutests
-Finding the minimal cutset might be hard. But we can find a custset in $n^2$ complexity.
-
-Bayesian network are among the most popular classes of tools for probabilistic modelling, widely adopted in machine learning as well as for the development of decision-support systems. Bayesian networks are graphical models, whose variables are in one-to-one correspondence with the nodes of a directed acyclic graph. Notably, the complexity of exact inference in a Bayesian network is basically defined by the topology of the graph. Polynomial-time algorithms can be devised for inference in singly-connected modesl (also called polytrees), while for multiply-connected topologies inference can be achieved in time exponential in the treewidth.
-
-Bayesian networks define a mutivariate mass function\footnote{We stick on the case of categorical variables}. Yet, when learning probabilities from small or incomplete dataset as well as when modelling expert qualitative knowledge the specification of a single xxx can be unrealistic. The theory of imprecise probability extends this xxx (Walley). Credal networks are the xxx. Notably, when coping with credal networks, the topology is not xx. As proved by xxx, massage propagation is xxx. Tessem and Zaffalon. Zaffalon devised xx. Cite the work of Maua and de Campos.
-Inference in Bayesian net
-
-Consider a collection of categorical variable. The specification of a multivariate distribution .
-Multivariate probability distributions
-
-Credal networks are a generalization
-\section{Experimental results}
-\subsection{Random credal set generation}
-\subsection{Experiment 1: Chains}
-\subsection{Experiment 2: Random Polytrees}
-\subsection{Experiment 3: Multiply connected models}
-
-Sul versante paper Jasper, io ho attivato il generatore di reti random che produce output solo in XMLBIF ed un piccolo generatore di credal set random basato sull'IDM. Tra l'altro credo che sia una buona idea lavorare con reti i cui credal set sono specificati da intervalli di probability (reachable come sono quelli dell'IDM) perche' poi vorremmo fare un confronto con ApproxLP che userebbe gli intervalli come vincoli lineari in input.
-
-\appendix
-\acks{We would like to acknowledge support for this project from the Random Science Foundation.}
-\section{Proofs}
-\label{app:theorem}
-In this appendix we present a random filler.
-\vskip 0.2in
-\end{document}
+%\appendix
+%\acks{We would like to acknowledge support for this project from the Random Science Foundation.}
+%\section{Proofs}
+%\label{app:theorem}
+%In this appendix we present a random filler.
+%\vskip 0.2in
+%\end{document}
