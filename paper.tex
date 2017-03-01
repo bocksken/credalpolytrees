@@ -18,7 +18,7 @@
 \setulcolor{blue}
 \newcommand{\BibTeX}{\textsc{B\kern-0.1emi\kern-0.017emb}\kern-0.15em\TeX}
 % Running title and authors 
-\ShortHeadings{ISIPTA '17: Author Instructions}{Antonucci et al.} 
+\ShortHeadings{Online Variable Elimination for Credal Polytrees}{De Bock, Huber, and Antonucci}
 %\pgmheading{1}{2000}{1-48}{4/00}{10/00}{Professorson and Teacherman}
 %\firstpageno{10}
 \usepackage{todonotes}
@@ -69,49 +69,8 @@ Let me see. Mention that we might explore other (more complex) inference task su
 %\end{myex}
 %\section{Cutset conditioning}
 %The VE procedure described in the previous section (whose worst case complexity remains exponentials) can be applied to polytree only. In order to extends these ideas to multiply connected topologies we adopt the same strategy considered for credal networks and based on the notion of cutset. It is a well-known fact that the arcs leaving an observed node in a Bayesian networks can be removed, provided that the local models of its children are replaced to xxx. This results have been shown to be valid for credal networks with strong independence by xxx. The cutset conditioning idea simply consists in detecting a set of nows whose observations. For Bayesian networks this procedure, whose complexity is xxx.
-\begin{figure}
-\centering
-\begin{tikzpicture}[semithick]
-\tikzset{ every node/.style={circle, draw, fill=white, minimum size=16pt, inner sep=1pt}}
-\tikzstyle{note}=[draw=white,fill=white,font=\small,circle,inner sep=0pt]
-\tikzstyle{evidence}=[fill=gray!24]
-\tikzstyle{query}=[fill=black!80, text=white]
-\tikzstyle{ed}=[draw=black,line width=.8pt, postaction={decorate}, decoration={markings,mark=at position 1.0 with {\arrow[draw=black,line width=.8pt]{>}}}]
-%\begin{scope}
-% vertices
-\node (a) at (0,1) {};
-\node (b) at (1,1) {};
-\node (c) at (2,1) {};
-\node[query] (d) at (3,1) {0};
-\node[evidence] (e) at (-.5,0) {3};
-\node[evidence] (f) at (0.5,0) {4};
-\node (g) at (2,0) {};
-\node[evidence] (h) at (3.5,0) {};
-\node (m) at (2.75,-1) {};
-\node[evidence] (n) at (2,-2) {};
-\node[] (o) at (1.5,2) {};
-\node[] (p) at (.5,2) {};
-%\node[note] (label) at (1,-1) {(a)};
-\draw[->] (a) -- (e);
-\draw[->] (a) -- (f);
-\draw[->] (b) -- (f);
-\draw[->] (b) -- (g);
-\draw[->] (c) -- (g);
-\draw[->] (d) -- (g);
-\draw[->] (d) -- (h);
-\draw[->] (g) -- (m);
-\draw[->] (m) -- (n);
-\draw[->] (o) -- (b);
-\draw[->] (p) -- (b);
-%\end{scope}
-%\begin{scope}[xshift=5cm]
-%\end{scope}
-\end{tikzpicture}
-\caption{A polytree-shaped credal network}
-\label{fig:polytree}
-\end{figure}
-Just notice that $P(X_q,x_E)$ shoul be eventually normalised in order to obtain $P(X_q|x_E)$.
-From the point of view of variable elimination, there is a crucial differ
+%Just notice that $P(X_q,x_E)$ shoul be eventually normalised in order to obtain $P(X_q|x_E)$.
+%From the point of view of variable elimination, there is a crucial differ
 %\section{Variable elimination with credal networks}
 %The combination operator $\otimes$ is achieved by simple elementwise multiplication. As noticed by Koller, this combination does not necessarily produce a set of conditional mass function.
 %To extend the VE algorithm to the CNs framework we need to extend to the credal sets framework the above considered operations of combination and marginalization. This is done in the following definitions.
