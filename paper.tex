@@ -33,13 +33,13 @@
 % Title and authors
 \title{Online Variable Elimination for Credal Polytrees}
 \author{\name Jasper De Bock \email jasper.debock@ugent.be\\
-\addr University of Ghent\\
-Ghent (Belgium)\\
+\addr Ghent University, IDLab\\
+Belgium\\
 \AND
 \name David Huber \email david@idsia.ch\\
 \name Alessandro Antonucci \email alessandro@idsia.ch\\
 \addr Istituto Dalle Molle di Studi Sull'Intelligenza Artificiale (IDSIA)\\
-Lugano (Swizterland)}
+Lugano (Switzerland)}
 \maketitle
 \begin{abstract}%   <- trailing '%' for backward compatibility of .sty file
 We propose a variable-elimination algorithm for exact inference in singly connected credal networks with strong independence. Compared to earlier works in this direction, the necessary extensive specification of the local models and the convexification are performed in an online way. This might produce considerable savings in memory and, for convexification only, time. Moreover, we show that with singly connected networks the convexification of the intermediate results of the inference can be achieved before the elimination step in a space with the same dimensionality of the variable to eliminate. This prevents issues related to convex hulls in high dimensions. Despite the NP-hardness of the inference even in the case of singly connected topologies, the experiments on a benchmark of randomly generated credal polytrees shows that exact inference can be achieved in models up to xxx variables if the number xxx. A further speed-up, at the price of an approximation, is achieved by rounding the values of the extreme points before the convexification, while an extension to general topologies can be achieved by loopset conditioning.
@@ -47,12 +47,12 @@ We propose a variable-elimination algorithm for exact inference in singly connec
 \begin{keywords}
 Credal networks; convex hull; variable elimination; cutset conditioning.
 \end{keywords}
-\include{intro}
-\include{basics}
-\include{VEdummy}
-\include{VEsmart}
-\include{example}
-%\include{experiments}
+\input{intro}
+\input{basics}
+\input{VEdummy}
+\input{VEsmart}
+\input{example}
+%\input{experiments}
 \section{Conclusions and Outlooks}
 Mention that we might explore other (more complex) inference task such as the computation of the probability of evidence as well as the maximum a posteriori hypothesis task (MAP), which in the credal setting can be formulated in different ways.
 \bibliography{biblio}
