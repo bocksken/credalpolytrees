@@ -1,0 +1,25 @@
+\section{Basics}\label{sec:basics}
+\subsection{Bayesian and credal networks}
+Given a discrete variable $X$, $\mathcal{X}$ denotes the set of its possible values and $x$ a generic element of this set. $P(X)$ is a probability mass function over $X$ and $P(x)$ the probability assigned to the singleton $x\in\mathcal{X}$. $K(X)$ denotes instead a convex set of probability mass functions over $X$, which is also called \emph{credal set} \cite{xxx}. The convex hull operator is denotes as $\mathrm{CH}$ (thus as CSs are convex $K(X)=CH[K(X)]$). In particular we focus on finitely generated credal sets characterised whose number of extreme points is therefore finite. Notation $\mathrm{ext}[K(X)]$ is used to denote this finite set of mass functions.
+
+Given a set of variables $\bm{X}:=(X_1,\ldots,X_n)$, a BN is a pair composed by a directed acyclic graph $\mathcal{G}$ whose nodes are in one-to-one correspondence with the elements of $\bm{X}$ and a collection of conditional mass functions $P(X_i|X_{\pi_i})$ over $X_i$, one for each $x_{\pi_i}\in\mathcal{X}_{\Pi_i}$. In a credal network the collection of conditional mass functions is simply replaced by a credal set $K(X_i|\pi_i)$. While a BN defines a joint mass function $P(\bm{X})$ which factorises as follows
+\[ P(\bm{x}) = \prod_i P(x_i|\pi_i) \]
+a credal net defines a joint CS $K(\bm{X})$ whose extreme points factorised as in xxx, with the specification. Say that this is the strong independence case and cite some paper by Jasper to mention that other indep have been proposed.
+
+It might be worth to mention that a CN is equivalent to (an exponential number) of CNs.
+
+\subsection{Updating and Variable elimination}
+Let us consider a Bayesian network over $\bm{X}$. Without lack of generality we can assume that the variable of interest $X_0$. An observation $x_E$ of a set of variables $X_E \subseteq \bm{X} \setminus X_0$ such that $P(x_E)>0$, updating is intended as the computation of:
+\[ P(x_0|x_E) =\frac{\sum_i \prod_i }{\sum_i \prod_i} \]
+where the right-hand side simply follows from the factorisation in \cite{x} the notion marginalisation of the unqueried and unobserved variable and the Bayes' theorem. For Bayesian networks updating is intended the identification of the lower/upper bounds.
+
+Variable elimination in a BN can be easily achieved as follows xxx. Given the ord
+
+\begin{verbatim}
+For X in X_n ... X_1
+Collect all the CPTs including X in B
+combine \otimes B
+if X is not observed: sum-out X
+else do focusing on xxx
+\end{verbatim}
+When the procedure end the algorithm returns $P(X_0,x_E)$ which can be used to compute $P(X_0|x_E)$ by a simple marginalization. The combination operation simply consists in the product of two CPTs, marginalisation simply coincides with the sum of a variable on the left and focusing with the xxx.

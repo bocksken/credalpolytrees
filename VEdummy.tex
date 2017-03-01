@@ -1,0 +1,53 @@
+\section{Credal Variable Elimination (dummy)}
+To extend the procedure outlined in the previous section we simply need to extend the operations xx.
+
+\subsection{The Algebra of Credal Tables}
+Given two variables $X$ and $Y$, we use notation $\{ K(X|y) \}_{y\in\mathcal{Y}}$ to denote a collection of (conditional) CSs over $X$, one for each value of $Y$. Given this object, we denote as $K(X|Y)$ the collection of all the probability tables $P(X|Y)$ obtained by combining, separately for each $y$, the extreme points xxx. We call this operation \emph{extensivisation} of the collection of conditional credal sets and cradal tables the corresponding object.
+
+Given two credal tables $K(X|Y)$ and $K(W|Z)$ we define the following combination operator. $K(X|Y) \otimes K(W|Z)$ is a credal table $K(X \cup W| Y,Z )$ obtained by all the possible combinations. 
+
+Given a credal table $K(X,Y|Z)$ the marginalization is xxxx. 
+
+Similarly the focusing operation consistst in $K(X,y|Z)$. Alternatively if the focussing is on $Z$, we have $K(X,Y|z)=K'(X,Y)$
+
+Finally the convexification of a CT $K(X|Y)$ is intended as the convex hull operation xxx. 
+
+After all these operations we can reformulate variable elimination in credal case as follows
+
+\begin{verbatim}
+For X in X_n .... X_1
+Collect all the credal tables including X in B
+If not already done, perform extensive all the elements
+combine them with \otimes B
+Take the convex hull
+marginalise out X
+Take the convex hull
+\end{verbatim}
+The procedure ends up with $K(X_q,x_E)$ whose vertex can be normalised to obtain $K(X_q|x_E)$ (this corresponds to a practical implementation of the generalised Bayes theorem \cite{walley}).
+
+Let us consider the following task. Given a queried variable $X_0$, and a set of evidences, say $(x_{n-e},\ldots,x_n)$ of the corresponding variables, we obtain $K(X_0,x_{n-e},\ldots,x_e)$ as follows.
+
+\begin{algorithm}
+\caption{VE algorithm
+%\vskip 0.6mm [Parameters] $s$ (maximum number of no-improve iterations) and $t$ (number of restarts) 
+\vskip 0.6mm [INPUT] a CN specification, an evidence $(x_{n-n_e},\ldots,x_n)$%\\credal network specification $\{ K(X_i|\pi_i) \}_{i=0,\ldots,n}^{\pi_i\in\Omega_{\Pi_i}}$
+\vskip 0.6mm [OUTPUT] $K(X_o|x_{n-n_e},\ldots,x_n)$} %an upper approximation of $\underline{P}(x_0)$\label{algo:glp}}
+\begin{algorithmic}[1]
+%\State $pp \gets 1.0$
+\State $\Phi := \{ P(X_i|\Pi_i) \}_{i=0}^n$ 
+\For{$k \gets n,\ldots,0$}%\Comment{random restarts}
+\State $\phi_k =1$ %$\tilde{P}(X_i|\pi_i)$ $\gets$ randomly pick from $\mathrm{ext}[K(X_i|\pi_i)]$ $\forall i,\pi_i$ \Comment{initialization}
+\For{$\phi \in \Phi$}
+\If{$X_k$ is in the argument of $\phi$}
+\State $\phi_k \gets \phi_k \otimes \phi$
+\State $\Phi \gets \Phi \setminus \{ \phi \}$
+\EndIf
+\EndFor
+\EndFor
+\If{$k = 0 | E$}
+\State $\phi_k \gets \sum_{X_k} \phi_k $
+\EndIf
+\State $\Phi \gets \Phi \cup \{ \sum_{X_k} \phi_k \}$
+\State {\bf return} $pp$ 
+\end{algorithmic}
+\end{algorithm}
