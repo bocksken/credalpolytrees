@@ -10,61 +10,58 @@ P(\bm{x}) = \prod_{i=0}^n P(x_i|\pi_i),
 \end{equation}
 for each $\bm{x}\in\mathcal{\bm{X}}$ and where the values of $x_i$ and $x_{\pi_i}$ are those consistent with $\bm{x}$. Similarly, a CN defines a joint CS $K(\bm{X})$ whose elements are PMFs obtained as in Eq.~\ref{eq:joint} with $P(X_i|\pi_i)\in K(X_i|\pi_i)$. 
 
-\subsection{Standard, Credal, and Bound Udating}
-
+\subsection{Bayesian (U), Credal (CU), and Bound Udating(BU)}
 Consider a BN and a CN over $\bm{X}$. Without lack of generality we can assume that the variable of interest $X_0$. Given a set of variables $X_E$, denotes as $x_E\in\mathcal{X}_E$ an instance of these variables. Updating a BN is intended as the computation of $P(x_0,x_E)$, obtained by summing out the variables in $\bm{X}\setminus \{X_0,X_E\}$ from Eq.~\ref{eq:joint}, for each $x_0\in\mathcal{X}_0$, from which $P(X_0|x_E)$ can simply obtained by normalisation, provided that $P(x_E)>0$.
 
 We can analogously intend updating in credal networks as the computation of the set $K(X_0,x_E)$, from which, by elementwise normalisation we obtain the updated CS $K(X_0|x_E)$. We call this CN inference task credal updating (CU) and distinguish it from the computation of the bounds $\underline{P}(x_0|x_E)$ and $\overline{P}(x_0|x_E)$ which is called here \emph{bound updating}.
 
 \subsection{Variable Elimination (VE) in BNs}
+VE is a standard approach to SU in BNs which consists in performing the marginalisation only over the combination of local models including the variable to eliminate. This is based on three simple operations over conditional probability tables.
 
-VE is a standard approach to PU in BNs. The idea is to perform marginalisation only over the combination of local models including the variable to eliminate.
+A conditional probability table (CPT) $P(X_I|X_J)$ over $X_I$ given $X_J$ is a collection of PMFs over $X_I$, one for each $X_J\in\mathcal{X}_J$. Given two CPTs $P(X_I|X_J)$ and $P(X_K|X_L)$, their \emph{combination} $P(X_I|X_J)\otimes P(X_K|X_L)$ is a CPT over $X_I \cup X_K$ given $\{X_J \cup X_L\} \setminus \{ X_I \cup X_K\}$ obtained by simple product *** say more? ***. Given a CPT $P(X_I,X_J|X_K)$, \emph{summing out} $X_J$ from this CPT defines a CPT over $X_I$ given $X_K$, denoted as $\sum_{X_j} P)(X_I|X_K)$, and obtained by summing out $X_J$ from each conditional PMF. Finally, given a CPT $P(X_I,X_J|X_K)$ and a state $x_J\in\mathcal{X}_J$ the \emph{focusing} of this CPT on $x_J$ is a CPT over $X_I$ given $X_K$, denoted as $P(X_I,x_j|X_K)$, and obtained by considering only the probabilities for $X_J=x_J$.\footnote{Strictly speaking the result of a focusing is not a CPT as the model is not normalised.}
 
-Given two (possibly joint )variables $X_I$ and $X_J$, a conditional probability table (CPT) $P(X_I|X_J)$ is a collection of PMF over $X_I$, one for each $X_J\in\mathcal{X}_J$. Given twp CPTs $P(X_I|X_J)$ and $P(X_K|X_L)$ we can simply obtain a new CPT, denoted as $P(X_I|X_J)\otimes P(X_K|X_L)$ by combination. The combined CPT is defined over $X_I \cup X_L$ given $X_J \cup X_M \setminus \{ X_I \cup X_J\}$. Given a CPT $P(X_I,X_J|X_K)$
-the marginalization of $X_J$ is denoted as $\sum_{X_j} P)(X_I|X_K)$ being simply a CPT $P(X_I|X_K)$ obtained by summing out $X_J$ on each conditional PMF. Finally, given a CPT $P(X_I,X_J|X_K)$ and a state $x_J\in\mathcal{X}_J$ we cal focusing a CPT $P(X_I,x_j|X_K)$. Note that strictly speaking this is not a CPT over $X_I$ because of the non-normalisation w.r.t. $X_I$.
 
-With this simple algebraic structure (see \cite{kohlas2003} for a xxx), we formulate the VE algorithm as in Table X.
+With this simple algebraic structure (see \cite{kohlas2003} for a more deeper discussion), we formulate the VE algorithm as in Algorithm X.
 
 
 \begin{algorithm}
-	\caption{VE algorithm
-		%\vskip 0.6mm [Parameters] $s$ (maximum number of no-improve iterations) and $t$ (number of restarts) 
-		\vskip 0.6mm [INPUT] a BN specification, an evidence $(x_{n-n_e},\ldots,x_n)$%\\credal network specification $\{ K(X_i|\pi_i) \}_{i=0,\ldots,n}^{\pi_i\in\Omega_{\Pi_i}}$
-		\vskip 0.6mm [OUTPUT] $K(X_o|x_{n-n_e},\ldots,x_n)$} %an upper approximation of $\underline{P}(x_0)$\label{algo:glp}}
-	\begin{algorithmic}[1]
-		%\State $pp \gets 1.0$
-		\State $\Phi := \{ P(X_i|\Pi_i) \}_{i=0}^n$ 
-		\For{$k \gets n,\ldots,0$}%\Comment{random restarts}
-		\State $\phi_k =1$ %$\tilde{P}(X_i|\pi_i)$ $\gets$ randomly pick from $\mathrm{ext}[K(X_i|\pi_i)]$ $\forall i,\pi_i$ \Comment{initialization}
-		\For{$\phi \in \Phi$}
-		\If{$X_k$ is in the argument of $\phi$}
-		\State $\phi_k \gets \phi_k \otimes \phi$
-		\State $\Phi \gets \Phi \setminus \{ \phi \}$
-		\EndIf
-		\EndFor
-		\EndFor
-		\If{$k = 0 | E$}
-		\State $\phi_k \gets \sum_{X_k} \phi_k $
-		\EndIf
-		\State $\Phi \gets \Phi \cup \{ \sum_{X_k} \phi_k \}$
-		\State {\bf return} $pp$ 
+\caption{VE algorithm
+\vskip 0.6mm [INPUT] BN specification, query $X_q$, evidence $X_E=x_E$ \vskip 0.6mm [OUTPUT] $P(X_0|x_E)$
+\label{alg:VEBN}}
+\begin{algorithmic}[1]
+%\State $pp \gets 1.0$
+\State $\Phi := \{ P(X_i|\Pi_i) \}_{i=0}^n$
+\Comment{All CPTs in input}
+\For{$k \gets n,\ldots,0$}
+\Comment{Loop over the variables (to be eliminated)}
+\State $\phi_k =1$ 
+\Comment{Initialise the combined CPT}
+\For{$\phi \in \Phi$}
+\If{$X_k$ is in the argument of $\phi$}
+\Comment{Select the CPTs containing $X_k$}
+\State $\phi_k \gets \phi_k \otimes \phi$
+\Comment{Combination}
+\State $\Phi \gets \Phi \setminus \{ \phi \}$
+\EndIf
+\EndFor
+\If {$X_k \not\in \{ X_E \cup X_q\}$}
+\State $\phi_k \gets \sum_{X_k} \phi_k$
+\Comment{Sum out unobserved/unqueried variables}
+\EndIf
+\If {$X_k \in X_E$}
+\State $\phi_k \gets \phi_k(\cdot,x_k)$
+\Comment{Focus for observed variables ($x_k$ consistent with $x_E$)}
+\EndIf
+\State $\Phi \gets \Phi \cup \{ \phi_k \}$
+\EndFor
+\State $P(X_q,x_E) \gets \Phi$ 
+\Comment{$\Phi$ now includes a single element}
+\State {\bf return} $\frac{P(X_q,x_E)}{\sum_{X_q} P(X_q,x_E)}$
+\Comment{Conditioning by normalisation (provided that $P(x_E)>0)$}
+
 	\end{algorithmic}
 \end{algorithm}
 
 
 
-
-
-To perform PU in a BN
-here the right-hand side simply follows from the factorisation in \cite{x} the notion marginalisation of the unqueried and unobserved variable and the Bayes' theorem. For Bayesian networks updating is intended the identification of the lower/upper bounds.
-
-Variable elimination in a BN can be easily achieved as follows xxx. Given the ord
-
-\begin{verbatim}
-For X in X_n ... X_1
-Collect all the CPTs including X in B
-combine \otimes B
-if X is not observed: sum-out X
-else do focusing on xxx
-\end{verbatim}
 When the procedure end the algorithm returns $P(X_0,x_E)$ which can be used to compute $P(X_0|x_E)$ by a simple marginalization. The combination operation simply consists in the product of two CPTs, marginalisation simply coincides with the sum of a variable on the left and focusing with the xxx.
